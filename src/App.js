@@ -1,14 +1,29 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { Provider } from "react-redux";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import InputForm from './components/InputForm'
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import InputForm from "./components/InputForm";
+import reducer from "./reducer";
+import rootSaga from "./sagas";
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
+sagaMiddleware.run(rootSaga);
 
 function App() {
   return (
-    <div className="App">
-     <InputForm/>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <InputForm />
+      </div>
+    </Provider>
   );
 }
 

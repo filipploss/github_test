@@ -1,7 +1,7 @@
 .App {
- display: flex;
- padding: 10px;
- justify-content: center ;
- align-items: center;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
   width: 600px;
 }

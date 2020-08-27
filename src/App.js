@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import InputForm from "./components/InputForm";
+import List from "./components/List";
 import reducer from "./reducer";
 import rootSaga from "./sagas";
 
@@ -22,6 +23,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <InputForm />
+        <List />
       </div>
     </Provider>
   );

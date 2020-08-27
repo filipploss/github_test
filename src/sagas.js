@@ -9,7 +9,7 @@ function getData() {
 export function* searchStart() {
   try {
     const response = yield call(getData);
-
+    console.log(response)
     if (response) {
       yield put({
         type: "FETCH_SUCCESS",

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, SyntheticEvent, ChangeEvent } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
@@ -11,12 +11,12 @@ import * as actions from "../../actions";
 function InputForm({ searchStart }: any) {
   const [inputText, setInputText] = useState("");
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
     searchStart(inputText);
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value);
   };
 
@@ -39,7 +39,7 @@ function InputForm({ searchStart }: any) {
   );
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   const { searchStart } = bindActionCreators(actions, dispatch);
   return {
     searchStart,

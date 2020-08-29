@@ -1,11 +1,12 @@
 import { call, put, takeEvery, all } from "redux-saga/effects";
+import { AnyAction } from 'redux'
 const axios = require("axios");
 
-function getData(company) {
+function getData(company : string) {
   return axios.get(`https://api.github.com/orgs/${company}/repos`);
 }
 
-export function* searchStart({ payload }) {
+export function* searchStart({ payload } : AnyAction ) {
   try {
     const response = yield call(() => getData(payload));
     if (response) {
@@ -23,7 +24,7 @@ export function* searchStart({ payload }) {
 }
 
 export function* watchSearchStart() {
-  yield takeEvery("FETCH_START", searchStart);
+  yield takeEvery("FETCH_START" , searchStart);
 }
 
 export default function* rootSaga() {

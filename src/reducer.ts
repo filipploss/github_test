@@ -1,4 +1,16 @@
-const initialState = {
+import { AnyAction } from "redux";
+
+interface IAppState {
+  companyName: string;
+  data: string;
+  currentPage: number;
+  postsPerPage: number;
+  error: null | boolean;
+  errorMessage: string;
+  loading: boolean;
+}
+
+const initialState: IAppState = {
   companyName: "",
   data: "",
   currentPage: 1,
@@ -8,7 +20,7 @@ const initialState = {
   loading: false,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case "FETCH_START":
       return {

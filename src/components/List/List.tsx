@@ -1,12 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import "./List.css";
-import * as actions from "../../actions";
+
+interface StateProps {
+  data: Array<object>;
+  currentPage: number;
+  errorMessage: string;
+  loading: boolean;
+  postsPerPage: number;
+  value: object
+}
+
+interface CurrentPosts {
+  id: number;
+  html_url: string;
+  name: string;
+  forks_count: number;
+  watchers_count: number;
+  stargazers_count: number;
+}
 
 function List({
   data,
@@ -14,8 +30,7 @@ function List({
   errorMessage,
   loading,
   postsPerPage,
-  handlePageChange,
-}) {
+}: StateProps) {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts;
@@ -37,6 +52,7 @@ function List({
       );
     }
   }
+
   if (loading) {
     return <Spinner animation="border" variant="info" />;
   }
@@ -52,7 +68,7 @@ function List({
 
   return (
     <>
-      <Table striped bordered hover size="sm" className='table'>
+      <Table striped bordered hover size="sm" className="table">
         {currentPosts ? (
           <thead>
             <tr>
@@ -77,7 +93,7 @@ function List({
                   forks_count,
                   watchers_count,
                   stargazers_count,
-                },
+                } : any,
                 index
               ) => {
                 return (
@@ -106,21 +122,9 @@ function List({
           )}
         </tbody>
       </Table>
-      <Pagination onClick={handlePageChange}>{items}</Pagination>
     </>
   );
 }
-
-const mapDispatchToProps = (dispatch) => {
-  const { pageChange } = bindActionCreators(actions, dispatch);
-  return {
-    handlePageChange: (e) => {
-      if (e.target.text) {
-        pageChange(+e.target.text);
-      }
-    },
-  };
-};
 
 const mapStateToProps = ({
   data,
@@ -128,7 +132,7 @@ const mapStateToProps = ({
   errorMessage,
   loading,
   postsPerPage,
-}) => {
+}: StateProps) => {
   return {
     data,
     currentPage,
@@ -138,4 +142,4 @@ const mapStateToProps = ({
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(mapStateToProps)(List);

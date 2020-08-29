@@ -1,6 +1,6 @@
 ## Rest API GitHub test app 
 
-Enter a company name and check all the public repositories that belongs to it.<br />
+Enter a company name and check all the public repositories on GitHub that belongs to it.<br />
 This app was made using Typescript, React, Redux, Redux-Saga, React-Bootstrap and Axios
 
 <br />

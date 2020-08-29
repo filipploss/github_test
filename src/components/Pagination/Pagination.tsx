@@ -1,15 +1,23 @@
 import React from "react";
 import Pagination from "react-bootstrap/Pagination";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
+
 import * as actions from "../../actions";
+
+interface IStateProps {
+  data: Array<object>;
+  currentPage: number;
+  postsPerPage: number;
+  handlePageChange: any;
+}
 
 function PaginationComponent({
   data,
   currentPage,
   postsPerPage,
   handlePageChange,
-}) {
+}: IStateProps) {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts;
@@ -38,10 +46,10 @@ function PaginationComponent({
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   const { pageChange } = bindActionCreators(actions, dispatch);
   return {
-    handlePageChange: (e) => {
+    handlePageChange: (e: any) => {
       if (e.target.text) {
         pageChange(+e.target.text);
       }
@@ -49,7 +57,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = ({ data, currentPage, postsPerPage }) => {
+const mapStateToProps = ({ data, currentPage, postsPerPage }: IStateProps) => {
   return {
     data,
     currentPage,

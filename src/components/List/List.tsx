@@ -6,7 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import "./List.css";
 
-interface StateProps {
+interface IStateProps {
   data: Array<object>;
   currentPage: number;
   errorMessage: string;
@@ -15,7 +15,7 @@ interface StateProps {
   value: object
 }
 
-interface CurrentPosts {
+interface ICurrentPosts {
   id: number;
   html_url: string;
   name: string;
@@ -30,7 +30,7 @@ function List({
   errorMessage,
   loading,
   postsPerPage,
-}: StateProps) {
+}: IStateProps) {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts;
@@ -132,7 +132,7 @@ const mapStateToProps = ({
   errorMessage,
   loading,
   postsPerPage,
-}: StateProps) => {
+}: IStateProps) => {
   return {
     data,
     currentPage,

@@ -9,6 +9,7 @@ import FormControl from "react-bootstrap/FormControl";
 import * as actions from "../../actions";
 
 function InputForm({ searchStart }: any) {
+  console.log(searchStart)
   const [inputText, setInputText] = useState("");
 
   const handleSubmit = (event: SyntheticEvent) => {

@@ -1,6 +1,7 @@
-## Rest API GitHub test app made using Typescript, React, Redux, Redux-Saga, React-Bootstrap and Axios
+## Rest API GitHub test app 
 
 Enter a company name and check all the public repositories that belongs to it.
+This app was made using Typescript, React, Redux, Redux-Saga, React-Bootstrap and Axios
 
 
 

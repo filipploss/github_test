@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
+
 import * as actions from "../../actions";
 
+function InputForm({ searchStart }: any) {
+  const [inputText, setInputText] = useState("");
 
-
-function InputForm({searchStart}: any) {
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    searchStart()
+    searchStart(inputText);
+  };
+
+  const handleChange = (event: any) => {
+    setInputText(event.target.value);
   };
 
   return (
@@ -22,6 +27,7 @@ function InputForm({searchStart}: any) {
           placeholder="Enter company name"
           aria-label="Enter company name"
           aria-describedby="basic-addon2"
+          onChange={handleChange}
         />
         <InputGroup.Append>
           <Button type="submit" variant="outline-secondary">
@@ -40,9 +46,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-const mapStateToProps = () => {
-  return {
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputForm);
+export default connect(null, mapDispatchToProps)(InputForm);

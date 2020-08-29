@@ -10,6 +10,7 @@ import InputForm from "./components/InputForm";
 import List from "./components/List";
 import reducer from "./reducer";
 import rootSaga from "./sagas";
+import Pagination from "./components/Pagination";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -24,6 +25,7 @@ function App() {
       <div className="App">
         <InputForm />
         <List />
+        <Pagination/>
       </div>
     </Provider>
   );

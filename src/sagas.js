@@ -1,15 +1,13 @@
 import { call, put, takeEvery, all } from "redux-saga/effects";
-// import { searchSuccess } from "./actions";
 const axios = require("axios");
 
-function getData() {
-  return axios.get("https://api.github.com/orgs/adidas/repos");
+function getData(company) {
+  return axios.get(`https://api.github.com/orgs/${company}/repos`);
 }
 
-export function* searchStart() {
+export function* searchStart({ payload }) {
   try {
-    const response = yield call(getData);
-    console.log(response)
+    const response = yield call(() => getData(payload));
     if (response) {
       yield put({
         type: "FETCH_SUCCESS",
@@ -19,6 +17,7 @@ export function* searchStart() {
   } catch (err) {
     yield put({
       type: "FETCH_FAILURE",
+      payload: err.message,
     });
   }
 }

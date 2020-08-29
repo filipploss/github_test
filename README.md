@@ -2,7 +2,7 @@
 
 Enter a company name and check all the public repositories that belongs to it.
 
--
+
 
 In the project directory, you can run:
 
